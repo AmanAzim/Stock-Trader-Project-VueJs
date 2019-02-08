@@ -3,10 +3,15 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
                     <router-link class="navbar-brand" to="/"><a>Stock Trader</a></router-link>
                 </div>
 
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <router-link tag="li" class="nav-item" to="/portfolio" activeClass="active"><a>Portfolio</a></router-link>
                         <router-link tag="li" class="nav-item" to="/stocks" activeClass="active"><a>Stocks</a></router-link>
