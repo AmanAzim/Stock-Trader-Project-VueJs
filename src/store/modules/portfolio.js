@@ -11,7 +11,6 @@ const mutations={
         }else{
             state.portfolioStocks.push({stockId:stockId, stockQuantity: stockQuantity});
         }
-
         state.funds -= stockPrice*stockQuantity;
 
     },

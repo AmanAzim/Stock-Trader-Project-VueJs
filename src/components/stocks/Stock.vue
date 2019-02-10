@@ -6,10 +6,10 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input class="form-control" type="number" placeholder="Quantity" v-model="quantity">
+                    <input class="form-control " type="number" placeholder="Quantity" @input="checkFunds" :class="{danger:!fundSufficient}" v-model="quantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success" v-on:click="buyStock" :disabled="quantity<=0 && !Number.isInteger(quantity) ">Buy</button>
+                    <button class="btn btn-success" v-on:click="buyStock" :disabled="(quantity<=0 || Number.isInteger(quantity)|| !fundSufficient)">{{fundSufficient ? 'Buy':'Insufficient funds'}}</button>
                 </div>
             </div>
         </div>
@@ -22,23 +22,38 @@
         data(){
             return{
                 quantity:0,
+                fundSufficient:true,
             };
         },
         methods:{
+           checkFunds(){
+               const currentFunds=this.$store.getters.funds;
+               if(currentFunds >= this.stock.price*this.quantity)
+               {
+                   this.fundSufficient=true;
+               }
+               else{
+                   this.fundSufficient=false;
+               }
+           },
            buyStock(){
-               const order={
-                   stockId: this.stock.id,
-                   stockPrice: this.stock.price,
-                   stockQuantity: this.quantity
-               };
-               console.log(order);
-               this.$store.dispatch('buyStock', order);
-               this.quantity=0;
+               if(this.fundSufficient)
+               {
+                   const order={
+                       stockId: this.stock.id,
+                       stockPrice: this.stock.price,
+                       stockQuantity: this.quantity
+                   };
+                   this.$store.dispatch('buyStock', order);
+                   this.quantity=0;
+               }
            }
         }
     }
 </script>
 
 <style scoped>
-
+    .danger{
+        border:1px solid red;
+    }
 </style>

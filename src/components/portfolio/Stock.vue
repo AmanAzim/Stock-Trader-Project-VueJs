@@ -6,10 +6,10 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input class="form-control" type="number" placeholder="Quantity" v-model="sellQuantity">
+                    <input class="form-control" type="number" placeholder="Quantity"  @input="checkStockQuantity"  :class="{danger:!sufficient_StockQuantity}" v-model="sellQuantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success" v-on:click="sellStock" :disabled="sellQuantity<=0 && !Number.isInteger(sellQuantity) ">Sell</button>
+                    <button class="btn btn-success" v-on:click="sellStock" :disabled="(sellQuantity<=0 || !sufficient_StockQuantity)">{{sufficient_StockQuantity ? 'Sell':'Not enough'}}</button>
                 </div>
             </div>
         </div>
@@ -23,12 +23,31 @@
         data(){
             return{
                 sellQuantity:0,
+                sufficient_StockQuantity:true,
             };
         },
         methods:{
             ...mapActions({
                 placeSellOrder:'sellStock'
             }),
+            checkStockQuantity(){
+               /* const currentStocks=this.$store.getters.stockPortfolio;
+                const record=currentStocks.find(elem=>elem.id==this.stock.id);
+                //console.log(record.quantity);
+
+                if(record.quantity >= this.sellQuantity)
+                {
+                    this.sufficient_StockQuantity=true;
+                }else{
+                    this.sufficient_StockQuantity=false;
+                } */
+                if(this.stock.quantity >= this.sellQuantity)
+                {
+                    this.sufficient_StockQuantity=true;
+                }else{
+                    this.sufficient_StockQuantity=false;
+                }
+            },
             sellStock(){
                 const order={
                     stockId:this.stock.id,
@@ -43,5 +62,7 @@
 </script>
 
 <style scoped>
-
+    .danger{
+        border:1px solid red;
+    }
 </style>

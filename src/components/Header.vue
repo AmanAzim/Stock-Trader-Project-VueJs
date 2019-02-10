@@ -17,6 +17,7 @@
                         <router-link tag="li" class="nav-item" to="/stocks" activeClass="active"><a>Stocks</a></router-link>
                     </ul>
 
+                    <strong class="navbar-text navbar-right">Funds: {{$store.getters.funds}}</strong>
                     <ul class="nav navbar-nav navbar-right">
                         <router-link tag="li" activeClass="active" to="#"><a>End Day</a></router-link>
                         <li class="dropdown">
