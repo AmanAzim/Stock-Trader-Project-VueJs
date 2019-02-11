@@ -20,7 +20,7 @@
             /*stocks(){
                 return this.$store.getters.stocks;
             }*/
-        }
+        },
     }
 </script>
 
