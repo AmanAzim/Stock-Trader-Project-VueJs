@@ -28,8 +28,6 @@ const mutations={
     'RESTORE_PORTFOLIO'(state, serverPortfolio){
        state.portfolioStocks=serverPortfolio.portfolio? serverPortfolio.portfolio : [];
        state.funds=serverPortfolio.funds;
-        var index = serverPortfolio.portfolio.findIndex(x => x.name=="Twitter");
-        console.log(index);
     }
 };
 const actions={

@@ -20,7 +20,7 @@
                     <strong class="navbar-text navbar-right">Funds: {{$store.getters.funds | currency}}</strong>
                     <ul class="nav navbar-nav navbar-right">
                         <li style="cursor: pointer" activeClass="active" v-on:click="endDay"><a>End Day</a></li>
-                        <li class="dropdown" :class="{open:isDropdownOpen}"  v-on:click="isDropdownOpen=!isDropdownOpen">
+                        <li class="dropdown" style="cursor: pointer" :class="{open:isDropdownOpen}"  v-on:click="isDropdownOpen=!isDropdownOpen">
                             <a class="dropdown-toggle" data-toggle="dropdown">Save & Load
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
