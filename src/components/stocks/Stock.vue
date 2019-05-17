@@ -9,7 +9,7 @@
                     <input class="form-control " type="number" placeholder="Quantity" @input="checkFunds" :class="{danger:!fundSufficient}" v-model="quantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success" v-on:click="buyStock" :disabled="(quantity<=0 || Number.isInteger(quantity)|| !fundSufficient)">{{fundSufficient ? 'Buy':'Insufficient funds'}}</button>
+                    <button class="btn btn-success" v-on:click="buyStock" :disabled="(quantity<=0 || !Number.isInteger(Number(quantity))|| !fundSufficient)">{{fundSufficient ? 'Buy':'Insufficient funds'}}</button>
                 </div>
             </div>
         </div>
