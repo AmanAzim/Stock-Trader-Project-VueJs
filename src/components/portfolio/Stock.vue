@@ -52,7 +52,7 @@
                 const order={
                     stockId:this.stock.id,
                     stockPrice:this.stock.price,
-                    stockQuantity:this.sellQuantity
+                    stockQuantity:Number(this.sellQuantity)
                 };
                 this.placeSellOrder(order);
                 this.sellQuantity=0;
